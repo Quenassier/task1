@@ -1,0 +1,57 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Ваша выборка данных (замените её данными)
+data = [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120]
+
+# Создаем DataFrame для удобства работы с данными
+df = pd.DataFrame(data, columns=["Значения"])
+
+# Сортируем данные для построения вариационного ряда
+df_sorted = df.sort_values(by=["Значения"])
+
+# Рисуем вариационный ряд
+print("Вариационный ряд:")
+print(df_sorted)
+
+# Рисуем гистограмму
+plt.hist(df["Значения"], bins=5, edgecolor="r")
+plt.title("Гистограмма")
+plt.xlabel("Значения")
+plt.ylabel("Частота")
+plt.show()
+
+# Рисуем полигон
+plt.plot(df_sorted["Значения"], range(1, len(df_sorted) + 1))
+plt.title("Полигон")
+plt.xlabel("Значения")
+plt.ylabel("Частота")
+plt.show()
+
+# Находим выборочное среднее
+mean = df["Значения"].mean()
+print(f"Выборочное среднее: {mean}")
+
+# Находим моду
+mode = df["Значения"].mode().iloc[0]
+print(f"Мода: {mode}")
+
+# Находим медиану
+median = df["Значения"].median()
+print(f"Медиана: {median}")
+
+# Находим выборочную дисперсию
+variance = df["Значения"].var()
+print(f"Выборочная дисперсия: {variance}")
+
+# Находим стандартное отклонение
+std_deviation = df["Значения"].std()
+print(f"Стандартное отклонение: {std_deviation}")
+
+# Находим коэффициент вариации
+coefficient_of_variation = (std_deviation / mean) * 100
+print(f"Коэффициент вариации: {coefficient_of_variation}%")
+
+# Находим размах
+range_val = df["Значения"].max() - df["Значения"].min()
+print(f"Размах: {range_val}")
